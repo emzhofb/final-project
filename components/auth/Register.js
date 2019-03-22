@@ -4,7 +4,6 @@ import {
   ImageBackground,
   View,
   Text,
-  Image,
   TextInput,
   Dimensions,
   TouchableOpacity,
@@ -13,7 +12,6 @@ import {
 } from "react-native";
 
 import bgImage from "../img/background.jpg";
-import logo from "../img/logo.png";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const { width: WIDTH } = Dimensions.get("window");
@@ -23,15 +21,15 @@ export default class Login extends React.Component {
     super();
     this.state = {
       showPassword: true,
-      press: false
+      pressPass: false
     };
   }
 
   showPassword = () => {
-    if (this.state.press === false) {
-      this.setState({ showPassword: false, press: true });
+    if (this.state.pressPass === false) {
+      this.setState({ showPassword: false, pressPass: true });
     } else {
-      this.setState({ showPassword: true, press: false });
+      this.setState({ showPassword: true, pressPass: false });
     }
   };
 
@@ -40,9 +38,45 @@ export default class Login extends React.Component {
       <ImageBackground source={bgImage} style={styles.backgroundContainer}>
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-          <View style={styles.logoContainer}>
-            <Image source={logo} style={styles.logo} />
-            <Text style={styles.logoText}>Example</Text>
+          <View style={styles.inputContainer}>
+            <Icon
+              name={"ios-create"}
+              size={28}
+              color={"rgba(255, 255, 255, 0.7)"}
+              style={styles.inputIcon}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder={"Full Name"}
+              returnKeyType="next"
+              autoCapitalize="none"
+              autoCorrect={false}
+              placeholderTextColor={"rgba(255, 255, 255, 0.7)"}
+              underlineColorAndroid="transparent"
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Icon
+              name={"md-at"}
+              size={28}
+              color={"rgba(255, 255, 255, 0.7)"}
+              style={styles.inputIcon}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder={"Email"}
+              returnKeyType="next"
+              autoCapitalize="none"
+              autoCorrect={false}
+              placeholderTextColor={"rgba(255, 255, 255, 0.7)"}
+              underlineColorAndroid="transparent"
+            />
+            <Icon
+              style={styles.validationIcon}
+              name="ios-checkmark-circle-outline"
+              size={26}
+              color={"rgba(255, 255, 255, 0.7)"}
+            />
           </View>
           <View style={styles.inputContainer}>
             <Icon
@@ -59,6 +93,12 @@ export default class Login extends React.Component {
               autoCorrect={false}
               placeholderTextColor={"rgba(255, 255, 255, 0.7)"}
               underlineColorAndroid="transparent"
+            />
+            <Icon
+              style={styles.validationIcon}
+              name="ios-checkmark-circle-outline"
+              size={26}
+              color={"rgba(255, 255, 255, 0.7)"}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -83,20 +123,17 @@ export default class Login extends React.Component {
               onPress={this.showPassword.bind(this)}
             >
               <Icon
-                name={this.state.press === false ? "ios-eye" : "ios-eye-off"}
+                name={
+                  this.state.pressPass === false ? "ios-eye" : "ios-eye-off"
+                }
                 size={26}
                 color={"rgba(255, 255, 255, 0.7)"}
               />
             </TouchableOpacity>
           </View>
-          <View>
-            <TouchableOpacity style={styles.buttonLogin}>
-              <Text style={styles.text}>Login</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonRegister}>
-              <Text style={styles.text}>Register</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={styles.buttonRegister}>
+            <Text style={styles.text}>Register</Text>
+          </TouchableOpacity>
         </KeyboardAvoidingView>
       </ImageBackground>
     );
@@ -153,25 +190,22 @@ const styles = StyleSheet.create({
     top: 8,
     right: 40
   },
-  buttonLogin: {
-    width: WIDTH - 55,
-    height: 45,
-    borderRadius: 25,
-    backgroundColor: "#432577",
-    justifyContent: "center",
-    marginTop: 20
-  },
   buttonRegister: {
     width: WIDTH - 55,
     height: 45,
     borderRadius: 25,
     backgroundColor: "#197770",
     justifyContent: "center",
-    marginTop: 5
+    marginTop: 10
   },
   text: {
     color: "rgba(255, 255, 255, 0.7)",
     fontSize: 16,
     textAlign: "center"
+  },
+  validationIcon: {
+    position: "absolute",
+    top: 8,
+    right: 40
   }
 });
