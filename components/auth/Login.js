@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -22,7 +22,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 const { width: WIDTH } = Dimensions.get("window");
 
-class LoginPage extends React.Component {
+class LoginPage extends Component {
   constructor() {
     super();
     this.state = {
@@ -118,13 +118,13 @@ class LoginPage extends React.Component {
   }
 }
 
-class RegisterPage extends React.Component {
+class RegisterPage extends Component {
   render() {
     return <Register />;
   }
 }
 
-class ForgotPasswordPage extends React.Component {
+class ForgotPasswordPage extends Component {
   render() {
     return <ForgotPassword />;
   }
