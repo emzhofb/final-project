@@ -130,17 +130,22 @@ class ForgotPasswordPage extends React.Component {
   }
 }
 
-const AppNavigator = createStackNavigator({
-  Login: {
-    screen: LoginPage
+const AppNavigator = createStackNavigator(
+  {
+    Login: {
+      screen: LoginPage
+    },
+    Register: {
+      screen: RegisterPage
+    },
+    ForgotPassword: {
+      screen: ForgotPasswordPage
+    }
   },
-  Register: {
-    screen: RegisterPage
-  },
-  ForgotPassword: {
-    screen: ForgotPasswordPage
+  {
+    headerMode: "none"
   }
-});
+);
 
 export default createAppContainer(AppNavigator);
 
