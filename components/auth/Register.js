@@ -166,7 +166,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     opacity: 0.5
   },
-
   inputContainer: {
     marginTop: 10
   },

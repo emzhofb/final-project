@@ -11,10 +11,6 @@ import {
   KeyboardAvoidingView,
   StatusBar
 } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
-
-import Register from "./Register";
-import ForgotPassword from "./ForgotPassword";
 
 import bgImage from "../img/background.jpg";
 import logo from "../img/logo.png";
@@ -22,7 +18,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 const { width: WIDTH } = Dimensions.get("window");
 
-class LoginPage extends React.Component {
+export default class ForgotPassword extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -50,14 +46,14 @@ class LoginPage extends React.Component {
           </View>
           <View style={styles.inputContainer}>
             <Icon
-              name={"ios-person"}
+              name={"md-at"}
               size={28}
               color={"rgba(255, 255, 255, 0.7)"}
               style={styles.inputIcon}
             />
             <TextInput
               style={styles.input}
-              placeholder={"Username"}
+              placeholder={"type your email"}
               returnKeyType="next"
               autoCapitalize="none"
               autoCorrect={false}
@@ -65,84 +61,16 @@ class LoginPage extends React.Component {
               underlineColorAndroid="transparent"
             />
           </View>
-          <View style={styles.inputContainer}>
-            <Icon
-              name={"ios-lock"}
-              size={28}
-              color={"rgba(255, 255, 255, 0.7)"}
-              style={styles.inputIcon}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder={"Password"}
-              returnKeyType="go"
-              autoCapitalize="none"
-              autoCorrect={false}
-              secureTextEntry={this.state.showPassword}
-              placeholderTextColor={"rgba(255, 255, 255, 0.7)"}
-              underlineColorAndroid="transparent"
-            />
-            <TouchableOpacity
-              style={styles.buttonEye}
-              onPress={this.showPassword.bind(this)}
-            >
-              <Icon
-                name={this.state.press === false ? "ios-eye" : "ios-eye-off"}
-                size={26}
-                color={"rgba(255, 255, 255, 0.7)"}
-              />
-            </TouchableOpacity>
-          </View>
           <View>
             <TouchableOpacity style={styles.buttonLogin}>
-              <Text style={styles.text}>Login</Text>
+              <Text style={styles.text}>Forgot Password</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.buttonRegister}
-              onPress={() => this.props.navigation.navigate("Register")}
-            >
-              <Text style={styles.text}>Register</Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <Text
-              style={styles.textForgot}
-              onPress={() => this.props.navigation.navigate("ForgotPassword")}
-            >
-              Forgot Password ?
-            </Text>
           </View>
         </KeyboardAvoidingView>
       </ImageBackground>
     );
   }
 }
-
-class RegisterPage extends React.Component {
-  render() {
-    return <Register />;
-  }
-}
-
-class ForgotPasswordPage extends React.Component {
-  render() {
-    return <ForgotPassword />;
-  }
-}
-
-const AppNavigator = createStackNavigator({
-  Login: {
-    screen: LoginPage
-  },
-  Register: {
-    screen: RegisterPage
-  },
-  ForgotPassword: {
-    screen: ForgotPasswordPage
-  }
-});
-
-export default createAppContainer(AppNavigator);
 
 const styles = StyleSheet.create({
   backgroundContainer: {
@@ -214,9 +142,5 @@ const styles = StyleSheet.create({
     color: "rgba(255, 255, 255, 0.7)",
     fontSize: 16,
     textAlign: "center"
-  },
-  textForgot: {
-    paddingTop: 10,
-    color: "white"
   }
 });
