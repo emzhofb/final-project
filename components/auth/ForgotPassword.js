@@ -13,37 +13,16 @@ import {
 } from "react-native";
 
 import bgImage from "../img/background.jpg";
-import logo from "../img/logo.png";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const { width: WIDTH } = Dimensions.get("window");
 
 export default class ForgotPassword extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showPassword: true,
-      press: false
-    };
-  }
-
-  showPassword = () => {
-    if (this.state.press === false) {
-      this.setState({ showPassword: false, press: true });
-    } else {
-      this.setState({ showPassword: true, press: false });
-    }
-  };
-
   render() {
     return (
       <ImageBackground source={bgImage} style={styles.backgroundContainer}>
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-          <View style={styles.logoContainer}>
-            <Image source={logo} style={styles.logo} />
-            <Text style={styles.logoText}>Example</Text>
-          </View>
           <View style={styles.inputContainer}>
             <Icon
               name={"md-at"}
@@ -83,22 +62,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center"
   },
-  logoContainer: {
-    alignItems: "center",
-    marginBottom: 50
-  },
-  logo: {
-    width: 120,
-    height: 120
-  },
-  logoText: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "500",
-    marginTop: 10,
-    opacity: 0.5
-  },
-
   inputContainer: {
     marginTop: 10
   },
