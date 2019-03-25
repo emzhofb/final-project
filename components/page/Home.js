@@ -33,14 +33,10 @@ const TabNavigator = createBottomTabNavigator(
         let IconComponent = Ionicons;
         let iconName;
         if (routeName === "Home") {
-          iconName = `ios-information-circle${focused ? "" : "-outline"}`;
-          // Sometimes we want to add badges to some icons.
-          // You can check the implementation below.
+          iconName = "ios-home";
         } else if (routeName === "Setting") {
-          iconName = `ios-options`;
+          iconName = "ios-options";
         }
-
-        // You can return any component that you like here!
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       }
     }),
