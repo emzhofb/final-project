@@ -22,6 +22,11 @@ export default class ForgotPassword extends React.Component {
       <ImageBackground source={bgImage} style={styles.backgroundContainer}>
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
+          <View>
+            <Text style={styles.textForgot}>
+              We will send you link to change your password
+            </Text>
+          </View>
           <View style={styles.inputContainer}>
             <Icon
               name={"md-at"}
@@ -104,5 +109,9 @@ const styles = StyleSheet.create({
     color: "rgba(255, 255, 255, 0.7)",
     fontSize: 16,
     textAlign: "center"
+  },
+  textForgot: {
+    fontFamily: "lucida grande",
+    color: "white"
   }
 });

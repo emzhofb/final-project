@@ -134,6 +134,29 @@ export default class Login extends React.Component {
           <TouchableOpacity style={styles.buttonRegister}>
             <Text style={styles.text}>Register</Text>
           </TouchableOpacity>
+          <View>
+            <Text style={styles.textOr}>Or</Text>
+          </View>
+          <View>
+            <TouchableOpacity style={styles.facebook}>
+              <Icon
+                name={"logo-facebook"}
+                size={28}
+                color={"rgba(255, 255, 255, 0.7)"}
+                style={styles.inputIcon}
+              />
+              <Text style={styles.text}>Login with Facebook</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.gmail}>
+              <Icon
+                name={"logo-google"}
+                size={28}
+                color={"rgba(255, 255, 255, 0.7)"}
+                style={styles.inputIcon}
+              />
+              <Text style={styles.text}>Login with Google</Text>
+            </TouchableOpacity>
+          </View>
         </KeyboardAvoidingView>
       </ImageBackground>
     );
@@ -206,5 +229,25 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 8,
     right: 40
+  },
+  textOr: {
+    paddingTop: 5,
+    color: "white"
+  },
+  facebook: {
+    width: WIDTH - 55,
+    height: 45,
+    borderRadius: 25,
+    backgroundColor: "#3B5998",
+    justifyContent: "center",
+    marginTop: 10
+  },
+  gmail: {
+    width: WIDTH - 55,
+    height: 45,
+    borderRadius: 25,
+    backgroundColor: "#dd4b39",
+    justifyContent: "center",
+    marginTop: 5
   }
 });
