@@ -15,6 +15,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import Register from "./Register";
 import ForgotPassword from "./ForgotPassword";
+import Home from "../page/Home";
 
 import bgImage from "../img/background.jpg";
 import logo from "../img/logo.png";
@@ -95,7 +96,12 @@ class LoginPage extends Component {
           </View>
           <View>
             <TouchableOpacity style={styles.buttonLogin}>
-              <Text style={styles.text}>Login</Text>
+              <Text
+                style={styles.text}
+                onPress={() => this.props.navigation.navigate("Home")}
+              >
+                Login
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonRegister}
@@ -130,6 +136,12 @@ class ForgotPasswordPage extends Component {
   }
 }
 
+class HomePage extends Component {
+  render() {
+    return <Home />;
+  }
+}
+
 const AppNavigator = createStackNavigator(
   {
     Login: {
@@ -140,6 +152,9 @@ const AppNavigator = createStackNavigator(
     },
     ForgotPassword: {
       screen: ForgotPasswordPage
+    },
+    Home: {
+      screen: HomePage
     }
   },
   {
