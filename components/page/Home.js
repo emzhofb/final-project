@@ -4,14 +4,11 @@ import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import Setting from "./Setting";
+import ChatBox from "./ChatBox";
 
 class HomeScreen extends Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Home!</Text>
-      </View>
-    );
+    return <ChatBox />;
   }
 }
 
@@ -33,10 +30,13 @@ const TabNavigator = createBottomTabNavigator(
         let IconComponent = Ionicons;
         let iconName;
         if (routeName === "Home") {
-          iconName = "ios-home";
+          iconName = `ios-home`;
+          // Sometimes we want to add badges to some icons.
+          // You can check the implementation below.
         } else if (routeName === "Setting") {
-          iconName = "ios-options";
+          iconName = `ios-options`;
         }
+        // You can return any component that you like here!
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       }
     }),
