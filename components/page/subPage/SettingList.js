@@ -16,6 +16,10 @@ export default class SettingList extends Component {
           key: "2",
           nome: "Email",
           msg: "akasaru@gmail.com"
+        },
+        {
+          key: "3",
+          nome: "Log Out"
         }
       ]
     };

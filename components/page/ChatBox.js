@@ -81,6 +81,7 @@ export default class Chat extends Component {
     return (
       <View style={styles.container}>
         <FlatList
+          inverted
           style={styles.list}
           data={this.state.data}
           keyExtractor={item => {

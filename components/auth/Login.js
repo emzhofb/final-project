@@ -28,9 +28,29 @@ class LoginPage extends Component {
     super();
     this.state = {
       showPassword: true,
-      press: false
+      press: false,
+      username: "",
+      password: ""
     };
   }
+
+  handleValidation = () => {
+    const { username, password } = this.state;
+    if (username === "") {
+      this.setState({
+        errorMessage: "Username can't be empty"
+      });
+    } else if (password === "") {
+      this.setState({
+        errorMessage: "Password can't be empty"
+      });
+    } else {
+      this.props.navigation.navigate("Home");
+      this.setState({
+        errorMessage: ""
+      });
+    }
+  };
 
   showPassword = () => {
     if (this.state.press === false) {
@@ -49,6 +69,9 @@ class LoginPage extends Component {
             <Image source={logo} style={styles.logo} />
             <Text style={styles.logoText}>Example</Text>
           </View>
+          <View>
+            <Text style={styles.validationText}>{this.state.errorMessage}</Text>
+          </View>
           <View style={styles.inputContainer}>
             <Icon
               name={"ios-person"}
@@ -64,6 +87,9 @@ class LoginPage extends Component {
               autoCorrect={false}
               placeholderTextColor={"rgba(255, 255, 255, 0.7)"}
               underlineColorAndroid="transparent"
+              onChangeText={theUsername =>
+                this.setState({ username: theUsername })
+              }
             />
           </View>
           <View style={styles.inputContainer}>
@@ -82,6 +108,9 @@ class LoginPage extends Component {
               secureTextEntry={this.state.showPassword}
               placeholderTextColor={"rgba(255, 255, 255, 0.7)"}
               underlineColorAndroid="transparent"
+              onChangeText={thePassword =>
+                this.setState({ password: thePassword })
+              }
             />
             <TouchableOpacity
               style={styles.buttonEye}
@@ -96,10 +125,7 @@ class LoginPage extends Component {
           </View>
           <View>
             <TouchableOpacity style={styles.buttonLogin}>
-              <Text
-                style={styles.text}
-                onPress={() => this.props.navigation.navigate("Home")}
-              >
+              <Text style={styles.text} onPress={this.handleValidation}>
                 Login
               </Text>
             </TouchableOpacity>
@@ -236,6 +262,11 @@ const styles = StyleSheet.create({
   },
   textForgot: {
     paddingTop: 10,
+    color: "white"
+  },
+  validationText: {
+    textAlign: "center",
+    marginBottom: 10,
     color: "white"
   }
 });

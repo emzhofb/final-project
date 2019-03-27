@@ -21,9 +21,40 @@ export default class Login extends React.Component {
     super();
     this.state = {
       showPassword: true,
-      pressPass: false
+      pressPass: false,
+      fullName: "",
+      email: "",
+      username: "",
+      password: "",
+      errorMessage: ""
     };
   }
+
+  handleValidation = () => {
+    const { fullName, email, username, password } = this.state;
+
+    if (fullName === "") {
+      this.setState({
+        errorMessage: "Full Name can't be empty"
+      });
+    } else if (email === "") {
+      this.setState({
+        errorMessage: "Email can't be empty"
+      });
+    } else if (username === "") {
+      this.setState({
+        errorMessage: "Username can't be empty"
+      });
+    } else if (password === "") {
+      this.setState({
+        errorMessage: "Password can't be empty"
+      });
+    } else {
+      this.setState({
+        errorMessage: ""
+      });
+    }
+  };
 
   showPassword = () => {
     if (this.state.pressPass === false) {
@@ -38,6 +69,9 @@ export default class Login extends React.Component {
       <ImageBackground source={bgImage} style={styles.backgroundContainer}>
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
+          <View>
+            <Text style={styles.validationText}>{this.state.errorMessage}</Text>
+          </View>
           <View style={styles.inputContainer}>
             <Icon
               name={"ios-create"}
@@ -53,6 +87,17 @@ export default class Login extends React.Component {
               autoCorrect={false}
               placeholderTextColor={"rgba(255, 255, 255, 0.7)"}
               underlineColorAndroid="transparent"
+              onChangeText={theName => this.setState({ fullName: theName })}
+            />
+            <Icon
+              style={styles.validationIcon}
+              name={
+                this.state.fullName !== ""
+                  ? "ios-checkmark-circle-outline"
+                  : "ios-close-circle-outline"
+              }
+              size={26}
+              color={"rgba(255, 255, 255, 0.7)"}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -70,10 +115,15 @@ export default class Login extends React.Component {
               autoCorrect={false}
               placeholderTextColor={"rgba(255, 255, 255, 0.7)"}
               underlineColorAndroid="transparent"
+              onChangeText={theEmail => this.setState({ email: theEmail })}
             />
             <Icon
               style={styles.validationIcon}
-              name="ios-checkmark-circle-outline"
+              name={
+                this.state.email !== ""
+                  ? "ios-checkmark-circle-outline"
+                  : "ios-close-circle-outline"
+              }
               size={26}
               color={"rgba(255, 255, 255, 0.7)"}
             />
@@ -93,10 +143,17 @@ export default class Login extends React.Component {
               autoCorrect={false}
               placeholderTextColor={"rgba(255, 255, 255, 0.7)"}
               underlineColorAndroid="transparent"
+              onChangeText={theUsername =>
+                this.setState({ username: theUsername })
+              }
             />
             <Icon
               style={styles.validationIcon}
-              name="ios-checkmark-circle-outline"
+              name={
+                this.state.username !== ""
+                  ? "ios-checkmark-circle-outline"
+                  : "ios-close-circle-outline"
+              }
               size={26}
               color={"rgba(255, 255, 255, 0.7)"}
             />
@@ -117,6 +174,9 @@ export default class Login extends React.Component {
               secureTextEntry={this.state.showPassword}
               placeholderTextColor={"rgba(255, 255, 255, 0.7)"}
               underlineColorAndroid="transparent"
+              onChangeText={thePassword =>
+                this.setState({ password: thePassword })
+              }
             />
             <TouchableOpacity
               style={styles.buttonEye}
@@ -132,7 +192,9 @@ export default class Login extends React.Component {
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.buttonRegister}>
-            <Text style={styles.text}>Register</Text>
+            <Text style={styles.text} onPress={this.handleValidation}>
+              Register
+            </Text>
           </TouchableOpacity>
           <View>
             <Text style={styles.textOr}>Or</Text>
@@ -249,5 +311,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#dd4b39",
     justifyContent: "center",
     marginTop: 5
+  },
+  validationText: {
+    textAlign: "center",
+    marginBottom: 10,
+    color: "white"
   }
 });
